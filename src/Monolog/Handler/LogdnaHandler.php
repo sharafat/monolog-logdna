@@ -1,15 +1,21 @@
 <?php
 
 /*
- * This file is part of the Zwijn/Monolog package.
+ * This file is part of the ITakademy/Monolog package.
  *
  * (c) Nicolas Vanheuverzwijn <nicolas.vanheu@gmail.com>
+ *
+ * This is a fork of Nicolas Vanheuverzwijn's work for Monolog2 compatibility
+ * Code by Jean-Baptiste MONIN <jb.monin@it-akademy.fr>, with thank's to Larry
+ * Laski <larry.laski@gmail.com> for his job.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Zwijn\Monolog\Handler;
+namespace ITakademy\Monolog\Handler;
+
+use Monolog\Formatter\FormatterInterface;
 
 /**
  * Sends log to Logdna. This handler uses logdna's ingestion api.
@@ -64,7 +70,7 @@ class LogdnaHandler extends \Monolog\Handler\AbstractProcessingHandler {
      * @param int $level
      * @param bool $bubble
      */
-    public function __construct($ingestion_key, $hostname, $level = \Monolog\Logger::DEBUG, $bubble = true) {
+    public function __construct($ingestion_key, $hostname, $level = \Monolog\Logger::DEBUG, bool $bubble = true) {
         parent::__construct($level, $bubble);
 
         if (!\extension_loaded('curl')) {
@@ -79,7 +85,7 @@ class LogdnaHandler extends \Monolog\Handler\AbstractProcessingHandler {
     /**
      * @param array $record
      */
-    protected function write(array $record) {
+    protected function write(array $record): void {
         $headers = ['Content-Type: application/json'];
         $data = $record["formatted"];
 
@@ -97,9 +103,9 @@ class LogdnaHandler extends \Monolog\Handler\AbstractProcessingHandler {
     }
 
     /**
-     * @return \Zwijn\Monolog\Formatter\LogdnaFormatter
+     * @return \ITakademy\Monolog\Formatter\LogdnaFormatter
      */
-    protected function getDefaultFormatter() {
-        return new \Zwijn\Monolog\Formatter\LogdnaFormatter();
+    protected function getDefaultFormatter(): FormatterInterface {
+        return new \ITakademy\Monolog\Formatter\LogdnaFormatter();
     }
 }

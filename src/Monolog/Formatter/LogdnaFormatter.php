@@ -1,15 +1,19 @@
 <?php
 
 /*
- * This file is part of the Zwijn/Monolog package.
+ * This file is part of the ITakademy/Monolog package.
  *
  * (c) Nicolas Vanheuverzwijn <nicolas.vanheu@gmail.com>
+ *
+ * This is a fork of Nicolas Vanheuverzwijn's work for Monolog2 compatibility
+ * Code by Jean-Baptiste MONIN <jb.monin@it-akademy.fr>, with thank's to Larry
+ * Laski <larry.laski@gmail.com> for his job.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Zwijn\Monolog\Formatter;
+namespace ITakademy\Monolog\Formatter;
 
 /**
  * Encode records in a json format compatible with Logdna
@@ -17,11 +21,11 @@ namespace Zwijn\Monolog\Formatter;
  */
 class LogdnaFormatter extends \Monolog\Formatter\JsonFormatter {
 
-    public function __construct($batchMode = self::BATCH_MODE_NEWLINES, $appendNewline = false) {
+    public function __construct($batchMode = self::BATCH_MODE_NEWLINES, bool $appendNewline = false) {
         parent::__construct($batchMode, $appendNewline);
     }
 
-    public function format(array $record) {
+    public function format(array $record): string {
         $date = new \DateTime();
 
         $json = [
