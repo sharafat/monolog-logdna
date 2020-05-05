@@ -10,7 +10,7 @@ Install with compose `composer require itakademy/monolog-logdna`.
 
 ## Usage
 
-```
+```php
 $logger = new \Monolog\Logger('general');
 $logdnaHandler = new \ITakademy\Monolog\Handler\LogdnaHandler('your-key', 'myappname', \Monolog\Logger::DEBUG);
 $logger->pushHandler($logdnaHandler); 
@@ -29,7 +29,7 @@ $logger->debug(
 
 Create the following php script `test.php`. Don't forget to set the ingestion key prior to running this script.
 
-```
+```php
 <?php
 
 include './vendor/autoload.php';
@@ -45,7 +45,7 @@ $logger->debug('mylog');
 
 Execute it with the following docker command.
 
-```
+```shell
 docker run -it --rm -v "${PWD}":/usr/src/myapp -w /usr/src/myapp php:5.6-cli php test.php
 ```
 
