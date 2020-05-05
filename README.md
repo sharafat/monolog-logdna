@@ -57,7 +57,7 @@ This project is licensed under LGPL3.0. See `LICENSE` file for details.
 
 ## Versions
 
-This version (2.x) is php7.2 / Monolog2 compatible.
+This version (3.x) is php7.2 / Monolog2 compatible.
 
 ## Test
 
